@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet, NgStyle, UpperCasePipe],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'Calculator';
@@ -16,23 +16,18 @@ export class AppComponent {
   operator: string = '';
   result: string = '';
 
-  // Handle the number and operator input
   pressKey(value: string): void {
     if (['+', '-', '*', '/'].includes(value)) {
-      // Set the operator if it's an operator
       if (this.currentValue !== '') {
         this.previousValue = this.currentValue;
         this.operator = value;
         this.currentValue = '';
       }
     } else if (value === '=') {
-      // Calculate the result if '=' is pressed
       this.calculate();
     } else if (value === 'C') {
-      // Clear the calculator if 'C' is pressed
       this.clear();
     } else {
-      // Append the number to the current value
       this.currentValue += value;
     }
   }
